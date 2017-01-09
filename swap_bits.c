@@ -41,14 +41,14 @@ void swapBits(uint32_t *var, int pos1, int pos2, int num)
   /* Extract the bits at high position */
   uint32_t maskHigh = MASK(high + num, high);
   uint32_t setHigh = *var & maskHigh;
-  /* Shift the bits to position of 'low' bits */
-  setHigh >>= high;
+  /* Right Shift the bits to position of 'low' bits */
+  setHigh >>= high - low;
 
   /* Extract the bits at low position */
   uint32_t maskLow = MASK(low + num, low);
   uint32_t setLow = *var & maskLow;
-  /* Shift the bits to position of 'high' bits */
-  setLow <<= high;
+  /* Left Shift the bits to position of 'high' bits */
+  setLow <<= high - low;
 
   /* Combine the two */
   uint32_t set = setHigh | setLow;
